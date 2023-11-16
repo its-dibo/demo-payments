@@ -35,9 +35,11 @@ export class AppComponent {
   fields?: FormlyFieldConfig[];
   model: { 
     gateway: 'tap' | 'stripe' | 'tamara';
-    [keys: string]: any
+    amount: number;
+    // [keys: string]: any
    } = {
-    gateway: 'tap'
+    gateway: 'tap',
+    amount: 1
    }
 
   cards={
@@ -101,8 +103,8 @@ export class AppComponent {
     storeId,
     capturing: true,
     voiding: false,
-    amount: 100000,
-    currency: "USD",
+    amount: this.model.amount,
+    currency: 'SAR',
     redirect_url: "https://example.com/payments/done/{CHECKOUT_ID}/{CHECKOUT_STATUS}",
     gateway_Provider: this.model['gateway'],
     items: [
